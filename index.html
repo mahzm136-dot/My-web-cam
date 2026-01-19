@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>የካሜራ ሙከራ</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 20px; }
+        video { width: 100%; max-width: 400px; border-radius: 10px; background: #000; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>የቀጥታ ስርጭት ሙከራ</h2>
+    <video id="video" autoplay playsinline></video>
+    <br><br>
+    <button onclick="startCamera()">ካሜራውን ክፈት</button>
+
+    <script>
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const videoElement = document.getElementById('video');
+                videoElement.srcObject = stream;
+            } catch (err) {
+                alert("ካሜራውን መክፈት አልተቻለም። እባክዎ ፈቃድ ይስጡ ወይም ሌላ ብሮውዘር ይጠቀሙ።");
+                console.error(err);
+            }
+        }
+    </script>
+</body>
+</html>
